@@ -4,23 +4,90 @@ import type { PackingItem } from "../types/packingItems";
 
 export function generatePackingList(formData: any): PackingItem[] {
 
-  // TODO 1: leeres Array erstellen
   let result: PackingItem[] = [];
-
-  // TODO 2: Beispiel Regel:
-  // if weather === "cold"
-  // → alle Items mit tag "cold" hinzufügen
-
-  // TODO 3: "always" Items hinzufügen
-
-  // TODO 4: weitere Regeln:
-  // - warm
-  // - beach
-  // - flight
-  // - etc.
-
-  // TODO 5: Duplikate vermeiden
-
-  // TODO 6: Ergebnis zurückgeben
+    AllItems.forEach((item)=>{
+        if(item.tags.includes("always")){
+            result.push(item);
+        }
+    });
+    if(formData.weather=== "winter"){
+        AllItems.forEach((item)=>{
+            if(item.tags.includes("winter")){
+                result.push(item)
+            }
+        })
+    }
+     if(formData.weather=== "summer"){
+        AllItems.forEach((item)=>{
+            if(item.tags.includes("summer")){
+                result.push(item)
+            }
+        })
+    }
+     if(formData.weather=== "spring"){
+        AllItems.forEach((item)=>{
+            if(item.tags.includes("spring")){
+                result.push(item)
+            }
+        })
+    }
+     if(formData.weather=== "autumn"){
+        AllItems.forEach((item)=>{
+            if(item.tags.includes("autumn")){
+                result.push(item)
+            }
+        })
+    }
+     if(formData.activity=== "beach"){
+        AllItems.forEach((item)=>{
+            if(item.tags.includes("beach")){
+                result.push(item)
+            }
+        })
+    }
+     if(formData.actvity=== "sport"){
+        AllItems.forEach((item)=>{
+            if(item.tags.includes("sport")){
+                result.push(item)
+            }
+        })
+    }
+     if(formData.activity=== "camping"){
+        AllItems.forEach((item)=>{
+            if(item.tags.includes("camping")){
+                result.push(item)
+            }
+        })
+    }
+     if(formData.activity=== "city"){
+        AllItems.forEach((item)=>{
+            if(item.tags.includes("city")){
+                result.push(item)
+            }
+        })
+    }
+         if(formData.transport=== "flight"){
+        AllItems.forEach((item)=>{
+            if(item.transport.includes("flight")){
+                result.push(item)
+            }
+        })
+    }
+         if(formData.transport=== "car"){
+        AllItems.forEach((item)=>{
+            if(item.transport.includes("car")){
+                result.push(item)
+            }
+        })
+    }
+             if(formData.transport=== "train"){
+        AllItems.forEach((item)=>{
+            if(item.transport.includes("train")){
+                result.push(item)
+            }
+        })
+    }
+    
+    
   return result;
 }

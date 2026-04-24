@@ -36,10 +36,10 @@ export function PackingForm(props: any) {
         <label>
           Wetter:
           <select value={weather} onChange={(e) => setWeather(e.target.value)}>
-            <option value="Winter">Winter</option>
-            <option value="Spring">Frühling</option>
-            <option value="Summer">Sommer</option>
-            <option value="Autumn">Herbst</option>
+            <option value="winter">Winter</option>
+            <option value="spring">Frühling</option>
+            <option value="summer">Sommer</option>
+            <option value="autumn">Herbst</option>
           </select>
         </label>
 

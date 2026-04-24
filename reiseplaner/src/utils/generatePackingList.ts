@@ -45,7 +45,7 @@ export function generatePackingList(formData: any): PackingItem[] {
             }
         })
     }
-     if(formData.actvity=== "sport"){
+     if(formData.activity=== "sport"){
         AllItems.forEach((item)=>{
             if(item.tags.includes("sport")){
                 result.push(item)
@@ -68,21 +68,21 @@ export function generatePackingList(formData: any): PackingItem[] {
     }
          if(formData.transport=== "flight"){
         AllItems.forEach((item)=>{
-            if(item.transport.includes("flight")){
+            if(item.tags.includes("flight")){
                 result.push(item)
             }
         })
     }
          if(formData.transport=== "car"){
         AllItems.forEach((item)=>{
-            if(item.transport.includes("car")){
+            if(item.tags.includes("car")){
                 result.push(item)
             }
         })
     }
              if(formData.transport=== "train"){
         AllItems.forEach((item)=>{
-            if(item.transport.includes("train")){
+            if(item.tags.includes("train")){
                 result.push(item)
             }
         })

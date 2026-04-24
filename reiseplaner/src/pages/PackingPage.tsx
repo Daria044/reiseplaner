@@ -3,56 +3,42 @@ import { PackingForm } from "../components/PackingForm";
 import { PackingList } from "../components/PackingList";
 import { AllItems } from "../types/items";
 import type { PackingItem } from "../types/packingItems";
-// import { generatePackingList } from "../utils/generatePackingList";
+import { generatePackingList } from "../utils/generatePackingList";
+import "../styles/packing.css";
 
 export function PackingPage() {
-
-  // TODO 1: State für PackingList erstellen
-  // → Array von PackingItem
   const [items, setItems] = useState<PackingItem[]>([]);
 
-  // TODO 2: Funktion zum ERSETZEN der Liste
   function setPackingList(newList: PackingItem[]) {
-    // TODO: optional console.log(newList)
     setItems(newList);
   }
-
-  // TODO 3: CREATE (manuell ein Item hinzufügen)
   function addItem(newItem: PackingItem) {
-    // TODO: neues Item zur bestehenden Liste hinzufügen
+    setItems([...items, newItem]);
   }
-
-  // TODO 4: DELETE (Item löschen)
   function deleteItem(id: number) {
-    // TODO: Item mit dieser id aus der Liste entfernen
+    const update = items.filter((item) => item.id !== id);
+    setItems(update);
   }
 
-  // TODO 5: UPDATE (Checkbox togglen)
   function toggleItem(id: number) {
-    // TODO: checked von einem Item ändern (true/false)
+    const updated = items.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item,
+    );
+    setItems(updated);
   }
 
-  // TODO 6: FORM HANDLER
-  function handleFormSubmit(formData: any) {
-    // TODO:
-    // 1. generatePackingList aufrufen
-    // 2. neue Liste bekommen
-    // 3. setPackingList(newList) aufrufen
+  function handleSubmit(formData: any) {
+    const newList = generatePackingList(formData);
+    setPackingList(newList);
   }
-
-  // TODO 7: TEST-DATEN
-  // → 2–3 Items aus ALL_ITEMS nehmen
-  // → setPackingList damit aufrufen (einmal beim Laden)
 
   return (
-    <div>
+  <div className="page">
       <h1>Packing Planner</h1>
 
-      {/* TODO: Form Funktion übergeben */}
-      <PackingForm />
+      <PackingForm onSubmit={handleSubmit} />
 
-      {/* TODO: items + delete + toggle übergeben */}
-      <PackingList />
+      <PackingList items={items} onDelete={deleteItem} onToggle={toggleItem} />
     </div>
   );
 }

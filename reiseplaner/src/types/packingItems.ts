@@ -6,5 +6,6 @@ export type PackingItem = {
     checked: boolean;
     tags: string[];
     priority?: number;
+    quantity?: number;
 
 }

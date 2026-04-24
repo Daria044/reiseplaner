@@ -1,93 +1,72 @@
 import { AllItems } from "../types/items";
 import type { PackingItem } from "../types/packingItems";
 
+type PackingFormData = {
+  activity: string;
+  duration: number;
+  gender: string;
+  transport: string;
+  weather: string;
+};
 
-export function generatePackingList(formData: any): PackingItem[] {
+const CLOTHING_CATEGORY = "Clothing";
 
-  let result: PackingItem[] = [];
-    AllItems.forEach((item)=>{
-        if(item.tags.includes("always")){
-            result.push(item);
-        }
+function addOrUpdateItem(
+  result: PackingItem[],
+  item: PackingItem,
+  quantity = 1,
+) {
+  if (quantity <= 0) {
+    return;
+  }
+
+  const existingItem = result.find(
+    (resultItem) =>
+      resultItem.name === item.name &&
+      resultItem.catergory === item.catergory,
+  );
+
+  if (existingItem) {
+    existingItem.quantity = (existingItem.quantity ?? 1) + quantity;
+    return;
+  }
+
+  result.push({
+    ...item,
+    quantity,
+  });
+}
+
+function addItemsByTag(
+  result: PackingItem[],
+  tag: string,
+  duration: number,
+  scaleClothingByDuration: boolean,
+) {
+  AllItems.forEach((item) => {
+    if (!item.tags.includes(tag)) {
+      return;
+    }
+
+    const quantity =
+      scaleClothingByDuration && item.catergory === CLOTHING_CATEGORY
+        ? Math.max(duration, 0)
+        : 1;
+
+    addOrUpdateItem(result, item, quantity);
+  });
+}
+
+export function generatePackingList(formData: PackingFormData): PackingItem[] {
+  const result: PackingItem[] = [];
+
+  addItemsByTag(result, "always", formData.duration, false);
+
+  [formData.weather, formData.activity, formData.transport]
+    .filter(Boolean)
+    .forEach((tag) => {
+      addItemsByTag(result, tag, formData.duration, true);
     });
-    if(formData.weather=== "winter"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("winter")){
-                result.push(item)
-            }
-        })
-    }
-     if(formData.weather=== "summer"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("summer")){
-                result.push(item)
-            }
-        })
-    }
-     if(formData.weather=== "spring"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("spring")){
-                result.push(item)
-            }
-        })
-    }
-     if(formData.weather=== "autumn"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("autumn")){
-                result.push(item)
-            }
-        })
-    }
-     if(formData.activity=== "beach"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("beach")){
-                result.push(item)
-            }
-        })
-    }
-     if(formData.activity=== "sport"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("sport")){
-                result.push(item)
-            }
-        })
-    }
-     if(formData.activity=== "camping"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("camping")){
-                result.push(item)
-            }
-        })
-    }
-     if(formData.activity=== "city"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("city")){
-                result.push(item)
-            }
-        })
-    }
-         if(formData.transport=== "flight"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("flight")){
-                result.push(item)
-            }
-        })
-    }
-         if(formData.transport=== "car"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("car")){
-                result.push(item)
-            }
-        })
-    }
-             if(formData.transport=== "train"){
-        AllItems.forEach((item)=>{
-            if(item.tags.includes("train")){
-                result.push(item)
-            }
-        })
-    }
-    
-    
+
   return result;
 }

@@ -1,6 +1,19 @@
 import { useState } from "react";
 import "../styles/packing.css";
-export function PackingForm(props: any) {
+
+type PackingFormData = {
+  activity: string;
+  duration: number;
+  gender: string;
+  transport: string;
+  weather: string;
+};
+
+type PackingFormProps = {
+  onSubmit: (formData: PackingFormData) => void;
+};
+
+export function PackingForm({ onSubmit }: PackingFormProps) {
   const [gender, setGender] = useState("");
   const [weather, setWeather] = useState("");
   const [duration, setDuration] = useState(0);
@@ -10,16 +23,15 @@ export function PackingForm(props: any) {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    const formData = {
+    onSubmit({
       gender,
       weather,
       duration,
       activity,
       transport,
-    };
-
-    props.onSubmit(formData);
+    });
   }
+
   return (
     <div className="form-card">
       <h2>Form</h2>
@@ -33,6 +45,7 @@ export function PackingForm(props: any) {
             </select>
           </label>
         </div>
+
         <div className="form-group">
           <label>
             Wetter:
@@ -47,6 +60,7 @@ export function PackingForm(props: any) {
             </select>
           </label>
         </div>
+
         <div className="form-group">
           <label>
             Dauer (Tage):
@@ -57,6 +71,7 @@ export function PackingForm(props: any) {
             />
           </label>
         </div>
+
         <div className="form-group">
           <label>
             Aktivität:
@@ -67,24 +82,25 @@ export function PackingForm(props: any) {
               <option value="beach">Strand</option>
               <option value="sport">Sport</option>
               <option value="camping">Camping</option>
-              <option value="City">Städtereise</option>
+              <option value="city">Städtereise</option>
             </select>
           </label>
         </div>
-         <div className="form-group">
-        <label>
-          Transport:
-          <select
-            value={transport}
-            onChange={(e) => setTransport(e.target.value)}
-          >
-            <option value="flight">Flug</option>
-            <option value="car">Auto</option>
-            <option value="train">zug</option>
-          </select>
-        </label>
+
+        <div className="form-group">
+          <label>
+            Transport:
+            <select
+              value={transport}
+              onChange={(e) => setTransport(e.target.value)}
+            >
+              <option value="flight">Flug</option>
+              <option value="car">Auto</option>
+              <option value="train">Zug</option>
+            </select>
+          </label>
         </div>
-        <br />
+
         <button type="submit">Liste erstellen</button>
       </form>
     </div>

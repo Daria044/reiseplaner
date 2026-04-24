@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { PackingForm } from "../components/PackingForm";
 import { PackingList } from "../components/PackingList";
-import { AllItems } from "../types/items";
 import type { PackingItem } from "../types/packingItems";
 import { generatePackingList } from "../utils/generatePackingList";
 import "../styles/packing.css";
@@ -11,9 +10,6 @@ export function PackingPage() {
 
   function setPackingList(newList: PackingItem[]) {
     setItems(newList);
-  }
-  function addItem(newItem: PackingItem) {
-    setItems([...items, newItem]);
   }
   function deleteItem(id: number) {
     const update = items.filter((item) => item.id !== id);

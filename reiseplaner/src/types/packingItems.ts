@@ -3,4 +3,7 @@ export type PackingItem = {
     name: string;
     catergory: string;
     checked: boolean;
+    tags: string[];
+    priority?: number; 
+
 }

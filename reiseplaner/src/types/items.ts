@@ -4,8 +4,8 @@ export const AllItems: PackingItem[] = [
   // ALWAYS
   { id: 1, name: "Zahnbürste", catergory: "Hygiene", checked: false, tags: ["always"] },
   { id: 2, name: "Zahnpasta", catergory: "Hygiene", checked: false, tags: ["always"] },
-  { id: 3, name: "Unterwäsche", catergory: "Clothing", checked: false, tags: ["always"] },
-  { id: 4, name: "Socken", catergory: "Clothing", checked: false, tags: ["always"] },
+  { id: 3, name: "Unterwäsche", catergory: "Clothing", checked: false, tags: ["always"], multiplyByDuration: true },
+  { id: 4, name: "Socken", catergory: "Clothing", checked: false, tags: ["always"], multiplyByDuration: true },
   { id: 5, name: "Deodorant", catergory: "Hygiene", checked: false, tags: ["always"] },
   { id: 6, name: "Ladekabel", catergory: "Extras", checked: false, tags: ["always"] },
   { id: 7, name: "Medikamente", catergory: "Hygiene", checked: false, tags: ["always"] },
@@ -25,8 +25,8 @@ export const AllItems: PackingItem[] = [
   { id: 17, name: "Dünner Pullover", catergory: "Clothing", checked: false, tags: ["spring"] },
 
   // SUMMER
-  { id: 18, name: "T-Shirt", catergory: "Clothing", checked: false, tags: ["summer"] },
-  { id: 19, name: "Shorts", catergory: "Clothing", checked: false, tags: ["summer"] },
+  { id: 18, name: "T-Shirt", catergory: "Clothing", checked: false, tags: ["summer"], multiplyByDuration: true },
+  { id: 19, name: "Shorts", catergory: "Clothing", checked: false, tags: ["summer"], multiplyByDuration: true },
   { id: 20, name: "Sonnencreme", catergory: "Extras", checked: false, tags: ["summer"] },
   { id: 21, name: "Sonnenbrille", catergory: "Extras", checked: false, tags: ["summer"] },
   { id: 22, name: "Sandalen", catergory: "Clothing", checked: false, tags: ["summer"] },
@@ -47,7 +47,7 @@ export const AllItems: PackingItem[] = [
 
   // SPORT
   { id: 33, name: "Sportschuhe", catergory: "Activity", checked: false, tags: ["sport"] },
-  { id: 34, name: "Sportkleidung", catergory: "Clothing", checked: false, tags: ["sport"] },
+  { id: 34, name: "Sportkleidung", catergory: "Clothing", checked: false, tags: ["sport"], multiplyByDuration: true },
   { id: 35, name: "Sportflasche", catergory: "Extras", checked: false, tags: ["sport"] },
   { id: 36, name: "Sporthandtuch", catergory: "Extras", checked: false, tags: ["sport"] },
 

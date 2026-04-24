@@ -7,5 +7,6 @@ export type PackingItem = {
     tags: string[];
     priority?: number;
     quantity?: number;
+    multiplyByDuration?: boolean;
 
 }

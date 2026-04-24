@@ -9,8 +9,6 @@ type PackingFormData = {
   weather: string;
 };
 
-const CLOTHING_CATEGORY = "Clothing";
-
 function addOrUpdateItem(
   result: PackingItem[],
   item: PackingItem,
@@ -41,17 +39,13 @@ function addItemsByTag(
   result: PackingItem[],
   tag: string,
   duration: number,
-  scaleClothingByDuration: boolean,
 ) {
   AllItems.forEach((item) => {
     if (!item.tags.includes(tag)) {
       return;
     }
 
-    const quantity =
-      scaleClothingByDuration && item.catergory === CLOTHING_CATEGORY
-        ? Math.max(duration, 0)
-        : 1;
+    const quantity = item.multiplyByDuration ? Math.max(duration, 0) : 1;
 
     addOrUpdateItem(result, item, quantity);
   });
@@ -60,12 +54,12 @@ function addItemsByTag(
 export function generatePackingList(formData: PackingFormData): PackingItem[] {
   const result: PackingItem[] = [];
 
-  addItemsByTag(result, "always", formData.duration, false);
+  addItemsByTag(result, "always", formData.duration);
 
   [formData.weather, formData.activity, formData.transport]
     .filter(Boolean)
     .forEach((tag) => {
-      addItemsByTag(result, tag, formData.duration, true);
+      addItemsByTag(result, tag, formData.duration);
     });
 
   return result;

@@ -38,7 +38,7 @@ export function PackingForm({ onSubmit }: PackingFormProps) {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>
-            Gender:
+            Geschlecht:
             <select value={gender} onChange={(e) => setGender(e.target.value)}>
               <option value="Female">Weiblich</option>
               <option value="Male">Männlich</option>
